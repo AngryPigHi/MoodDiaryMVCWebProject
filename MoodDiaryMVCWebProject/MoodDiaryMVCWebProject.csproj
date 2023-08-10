@@ -6,4 +6,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\css\layui.css" />
+    <Content Remove="wwwroot\font\iconfont.eot" />
+    <Content Remove="wwwroot\font\iconfont.svg" />
+    <Content Remove="wwwroot\font\iconfont.ttf" />
+    <Content Remove="wwwroot\font\iconfont.woff" />
+    <Content Remove="wwwroot\font\iconfont.woff2" />
+    <Content Remove="wwwroot\js\layui.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\layui.css" />
+    <None Include="wwwroot\font\iconfont.eot" />
+    <None Include="wwwroot\font\iconfont.svg" />
+    <None Include="wwwroot\font\iconfont.ttf" />
+    <None Include="wwwroot\font\iconfont.woff" />
+    <None Include="wwwroot\font\iconfont.woff2" />
+    <None Include="wwwroot\js\layui.js" />
+  </ItemGroup>
+
 </Project>
