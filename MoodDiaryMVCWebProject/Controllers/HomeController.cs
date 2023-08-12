@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MoodDiaryMVCWebProject.FuncCores.Home;
 using MoodDiaryMVCWebProject.Models;
 using System.Diagnostics;
 
@@ -7,14 +8,17 @@ namespace MoodDiaryMVCWebProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly HomeAPIFuncCore _homeAPIFuncCore;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, HomeAPIFuncCore homeAPIFuncCore)
         {
             _logger = logger;
+            _homeAPIFuncCore = homeAPIFuncCore;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Msg = _homeAPIFuncCore.Test();
             return View();
         }
 

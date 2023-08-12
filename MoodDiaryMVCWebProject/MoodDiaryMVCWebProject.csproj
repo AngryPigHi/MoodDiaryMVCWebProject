@@ -17,13 +17,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\layui.css" />
-    <None Include="wwwroot\font\iconfont.eot" />
-    <None Include="wwwroot\font\iconfont.svg" />
-    <None Include="wwwroot\font\iconfont.ttf" />
-    <None Include="wwwroot\font\iconfont.woff" />
-    <None Include="wwwroot\font\iconfont.woff2" />
-    <None Include="wwwroot\js\layui.js" />
+    <None Include="wwwroot\css\layui.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\font\iconfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\font\iconfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\font\iconfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\font\iconfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\font\iconfont.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="wwwroot\js\layui.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
