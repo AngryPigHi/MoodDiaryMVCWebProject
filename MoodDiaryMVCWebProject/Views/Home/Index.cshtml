@@ -2,8 +2,21 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="layui-bg-gray" style="padding: 16px;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">日记统计</div>
+                <div class="layui-card-body">
+                    你已经写了<span id="diaryCount"></span>篇心情日记！
+                    <br />向我吐槽吧，我会保守所有秘密！
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     @ViewBag.Msg
 </div>
+

@@ -7,7 +7,7 @@ namespace MoodDiaryMVCWebProject.FuncCores.Home
     {
         public string Test()
         {
-            return "批量注册DI成功！（HomeAPIFuncCore）";
+            return "专供花花小仙女的心情树洞~(DI成功)";
         }
     }
 }
