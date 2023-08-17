@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MoodDiaryMVCWebProject.Attributes;
 using MoodDiaryMVCWebProject.FuncCores.Home;
 using MoodDiaryMVCWebProject.Models;
 using System.Diagnostics;
 
 namespace MoodDiaryMVCWebProject.Controllers
 {
-    public class HomeController : Controller
+    [JWTCheck]
+    public class HomeController : SelfDefineController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly HomeAPIFuncCore _homeAPIFuncCore;
@@ -19,9 +21,11 @@ namespace MoodDiaryMVCWebProject.Controllers
         public IActionResult Index()
         {
             ViewBag.Msg = _homeAPIFuncCore.Test();
+            ViewBag.UserAccount = UserAccount;
             return View();
         }
 
+        [JWTIgnore]
         public IActionResult Privacy()
         {
             return View();

@@ -27,8 +27,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 //添加自定义中间件
-//app.UseCustomMiddlewares();
-app.UseMiddleware<VisitRecordLoggerMiddleware>();
+app.UseCustomMiddlewares();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -40,5 +39,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Index}/{id?}");
+
+
 
 app.Run();

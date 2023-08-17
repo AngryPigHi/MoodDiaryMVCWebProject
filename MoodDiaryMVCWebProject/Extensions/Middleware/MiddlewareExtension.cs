@@ -8,6 +8,7 @@ namespace MoodDiaryMVCWebProject.Extensions.Middleware
         public static void UseCustomMiddlewares(this WebApplication webApp)
         {
             webApp.UseMiddleware<VisitRecordLoggerMiddleware>();
+            webApp.UseMiddleware<CheckJWTMiddleware>();
         }
     }
 }
