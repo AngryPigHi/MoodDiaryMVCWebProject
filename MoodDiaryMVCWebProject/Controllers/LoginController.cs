@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.IdentityModel.Tokens;
+using MoodDiaryMVCWebProject.Attributes;
 using MoodDiaryMVCWebProject.DBModels;
 using MoodDiaryMVCWebProject.Models.JsonModels.Login;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,6 +10,7 @@ using System.Text;
 
 namespace MoodDiaryMVCWebProject.Controllers
 {
+    [JWTIgnore]
     public class LoginController : SelfDefineController
     {
         private readonly ILogger<HomeController> _logger;
@@ -27,23 +29,33 @@ namespace MoodDiaryMVCWebProject.Controllers
         }
 
         [HttpPost]
+        [JWTIgnore]
         public IActionResult Login(LoginJsonModel model)
         {
-            if (string.IsNullOrEmpty(model.Account) || string.IsNullOrEmpty(model.Password))
+            try
             {
-                return Ok(new { code = 0, msg = "参数缺失！" });
-            }
+                if (string.IsNullOrEmpty(model.Account) || string.IsNullOrEmpty(model.Password))
+                {
+                    return Ok(new { code = 0, msg = "参数缺失！" });
+                }
 
-            var verify = _context.UserInfos
-                .Any(x => x.Account == model.Account && x.Password == model.Password);
-            if (verify)
-            {
-                return Ok(new { code = 1, jwt = GenerateJWT(model.Account), msg = "/Home/Index" });
+                var verify = _context.UserInfos
+                    .Any(x => x.Account == model.Account && x.Password == model.Password);
+                if (verify)
+                {
+                    return Ok(new { code = 1, jwt = GenerateJWT(model.Account), msg = "/Home/Index" });
+                }
+                else
+                {
+                    return Ok(new { code = 0, msg = "用户名或密码错误！" });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return Ok(new { code = 0, msg = "用户名或密码错误！" });
+
+                return Ok(new {code=0,msg=ex.Message });
             }
+           
         }
 
         private string GenerateJWT(string Account)

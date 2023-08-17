@@ -23,6 +23,18 @@ namespace MoodDiaryMVCWebProject.Middlewares
 
             //1.获取Controller和Action
             string requestPath = context.Request.Path;
+
+            string logpath = AppDomain.CurrentDomain.BaseDirectory + @"\Logs\log.txt";
+            if (!File.Exists(logpath))
+            {
+                if (!Directory.Exists(Path.GetDirectoryName(logpath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(logpath));
+                }
+                File.Create(logpath).Close();
+            }
+            await File.AppendAllTextAsync(logpath, $"{DateTime.Now.ToString()}:RequestPath='{requestPath}'\r\n");
+
             string pathWithGan = requestPath;
             string controllerName = "";
             string actionName = "";
@@ -78,6 +90,9 @@ namespace MoodDiaryMVCWebProject.Middlewares
                                     isNeedJWTCheck = true;
                                 }
                             }
+
+                            await File.AppendAllTextAsync(logpath, $"{DateTime.Now.ToString()}:isController_JWTCheck='{isController_JWTCheck} isController_JWTIgnore='{isController_JWTIgnore} isAction_JWTCheck='{isAction_JWTCheck} isAction_JWTIgnore='{isAction_JWTIgnore} isNeedJWTCheck='{isNeedJWTCheck}'\r\n");
+
                         }
                     }
                 }
