@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using MoodDiaryMVCWebProject.Attributes;
 using MoodDiaryMVCWebProject.FuncCores.Home;
 using MoodDiaryMVCWebProject.Models;
@@ -11,16 +12,19 @@ namespace MoodDiaryMVCWebProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly HomeAPIFuncCore _homeAPIFuncCore;
+        private readonly IDistributedCache _cache;
 
-        public HomeController(ILogger<HomeController> logger, HomeAPIFuncCore homeAPIFuncCore)
+        public HomeController(ILogger<HomeController> logger, HomeAPIFuncCore homeAPIFuncCore, IDistributedCache cache)
         {
             _logger = logger;
             _homeAPIFuncCore = homeAPIFuncCore;
+            _cache = cache;
         }
 
         public IActionResult Index()
         {
             ViewBag.Msg = _homeAPIFuncCore.Test();
+            ViewBag.DiaryCount = _homeAPIFuncCore.GetMoodDiaryCountsForUserInfo(UserAccount);
             ViewBag.UserAccount = UserAccount;
             return View();
         }
@@ -42,5 +46,12 @@ namespace MoodDiaryMVCWebProject.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        #region API接口
+
+
+        #endregion
+
     }
 }

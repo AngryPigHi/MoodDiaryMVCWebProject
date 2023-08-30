@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MoodDiaryMVCWebProject.DBModels.Home;
 using MoodDiaryMVCWebProject.DBModels.Login;
 
 namespace MoodDiaryMVCWebProject.DBModels
@@ -6,6 +7,12 @@ namespace MoodDiaryMVCWebProject.DBModels
     public class MoodContext : DbContext
     {
         public DbSet<UserInfo> UserInfos { get; set; }
+
+        public DbSet<MoodDiary> MoodDiarys { get; set; }
+
+        public DbSet<MoodDiaryComment> MoodDiaryComments { get; set; }
+
+        public DbSet<MoodStates> MoodStates { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

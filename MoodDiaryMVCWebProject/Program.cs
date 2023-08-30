@@ -14,6 +14,11 @@ builder.Services.AddDbContext<MoodContext>();
 //批量注册自定义的服务
 builder.Services.AddBatchCustomServices();
 
+//注册Redis服务
+builder.Services.AddStackExchangeRedisCache(opt => {
+    opt.Configuration = "localhost";
+});
+
 
 
 var app = builder.Build();
